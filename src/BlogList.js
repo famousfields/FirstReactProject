@@ -1,5 +1,5 @@
 const BlogList = ({blogs, title, handleDelete}) => {
-   
+
     return (  
         <div className="blog-list">
             <h2>{title}</h2>
