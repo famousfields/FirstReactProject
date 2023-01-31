@@ -1,11 +1,10 @@
 import BlogList from './BlogList';
 import useFetch from './useFetch';
 
-
 const Home = () => {
-    const link = 'http://localhost:8000/blogss';
+    const link = 'http://localhost:8000/blogs';
+    const {data: blogs, isPending,error} = useFetch(link);// sets variables to whatever the fetch function returns
 
-    const {data: blogs, isPending,error} = useFetch(link);
     return (  
         <div className="Home">
             { error && <div> {error} </div>}
