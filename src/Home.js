@@ -5,30 +5,43 @@ import BlogList from './BlogList';
 const Home = () => {
    
     const [blogs, setBlogs] = useState(null);
-    //const [isPending, setIsPending] = useState(true);
+    const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
 
     //runs every render, unless you put '[]' after function
     //fetches data data
-    useEffect(() => 
-    {
-        fetch('http://localhost:8000/blogs')
-            .then(response => {
-                return response.json()
+    useEffect(() => {
+        setTimeout(() =>{
+            fetch('http://localhost:8000/blogs')//fetch from database (this endpoint was available to us after watching the database from a command in the terminal)
+            .then(response => {//check to see if there was a proper response from the data base...
+                if(!response.ok){
+                    throw Error('Could not fetch data for that resource');
+                }
+                return response.json();
             })
             .then((data) => {
-                console.log(data);
+                setBlogs(data);// sets blogs to that data
+                setIsPending(false);
+                setError(null);
             })
+            .catch(error => {// catches any kind of network error
+                setError(error.message);
+                if(error.message)
+                {
+                    setIsPending(false);
+                }
+            })
+        }, 1000)
+        
+            
     }, []);
 
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs);
-    }
     
     return (  
         <div className="Home">
-            {/* {isPending && <div>Loading...</div>} */}
-          {/* {blogs && <BlogList blogs = {blogs} title = "All Blogs!" handleDelete = {handleDelete}/>} */}
+            {error && <div>{error}</div>}
+            {isPending && <div>Loading...</div>} 
+            {blogs && <BlogList blogs = {blogs} title = "All Blogs!"/>}
         </div>
     );
 }
