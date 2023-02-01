@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
 
-const useFetch = (url) => {
+const useFetch = (url) => {//fetches data everytime new url is passed
 
-    const [data, setData] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
+    const [data, setData] = useState(null);// grabs data
+    const [isPending, setIsPending] = useState(true);// for user experience purposes
+    const [error, setError] = useState(null);// display the error message, if neccessary
 
     //runs every render, unless you put '[]' after function call
     //fetches data data
@@ -37,9 +37,9 @@ const useFetch = (url) => {
         }, 1000)
         
         return () => abortCont.abort();// clean up funtion
-    }, [url]);
+    }, [url]);// dependency on url
 
-    return{data,isPending,error}
+    return{data, isPending, error}
 }
 
 export default useFetch;
