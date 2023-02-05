@@ -28,6 +28,24 @@
 .navbar a:hover {
   color: #f1356d;
 }
+.footer{
+  bottom: 0;
+  position: fixed;
+  align-items: center;
+  border-top: 1px solid #f2f2f2;
+  padding: 25px;
+  margin: 20px;
+  display: flex;
+}
+.footer button{
+  margin-right: 10px;
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
 .content {
   max-width: 600px;
   margin: 40px auto;
