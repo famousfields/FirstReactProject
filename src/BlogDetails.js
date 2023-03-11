@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 const BlogDetails = () => {
     const { id } = useParams();
     const{data, error, isPending} = useFetch('http://localhost:8000/blogs/'+ id);
-    const history = useHistory();
+    const history = useHistory();//use History will take you back a page'<-'
 
     const handleClick  = () => {//delete blog
         fetch('http://localhost:8000/blogs/'+data.id,{

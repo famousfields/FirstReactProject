@@ -13,8 +13,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <SideBar/>
         <Navbar />
+        <SideBar/>
         <div className="content">
           <Switch>{/* assures only one router component displays at once */}
             <Route exact path = "/">
